@@ -21,13 +21,13 @@ mysql = MySQL(app)
 #Search for a person in the database using parameters
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    if request.method == 'POST' and request.form.get('name') != '' and request.form.get('cni') != '' and request.form.get('datenaissance') != '':
+    if request.method == 'POST' and request.form.get('name') != '' and request.form.get('cni') != '' and request.form.get('datebirth') != '':
         # Fetch form data
         name = request.form.get('name')
         cni = request.form.get('cni')
-        dateNaissance = request.form.get('datenaissance')
+        dateBirth = request.form.get('datebirth')
         cur = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        query = ("SELECT * FROM personne where nom = '" + name + "'and cni = '" + cni + "' and datenaissance = '" + dateNaissance + "';")
+        query = ("SELECT * FROM personne where name = '" + name + "'and cni = '" + cni + "' and brith = '" + dateBirth + "';")
         cur.execute(query)
         result = cur.fetchall()
         if len(result) > 0:
@@ -46,7 +46,7 @@ def index():
 @app.route('/population', methods=['GET'])
 def population():
     cur = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    query = "SELECT nom, cni, datenaissance FROM personne;"
+    query = "SELECT name, cni, birth FROM person;"
     cur.execute(query)
     result = cur.fetchall()
     json = {'data': result}
