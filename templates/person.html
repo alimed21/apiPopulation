@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail person</title>
+</head>
+<body>
+    <h1>Detail person</h1>
+    <table border="1">
+        {% for person in personDetails %}
+            <tr>
+                <td>
+                    {{person[0]}}
+                </td>
+                 <td>
+                    {{person[1]}}
+                </td>
+                 <td>
+                    {{person[2]}}
+                </td>
+                 <td>
+                    {{person[3]}}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

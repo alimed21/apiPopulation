@@ -1,0 +1,4 @@
+mysql_host : 'host_database'
+mysql_user : 'username'
+mysql_password : 'password'
+mysql_db : 'name database'
