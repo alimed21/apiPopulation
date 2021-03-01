@@ -18,26 +18,7 @@ app.config['MYSQL_DB'] = db['mysql_db']
 
 
 mysql = MySQL(app)
-
-@app.route('/search', methods=['GET', 'POST'])
-def search():
-    cur = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    name = request.args.get('name')
-    cni = request.args.get('cni')
-    dateNaissance = request.args.get('datenaissance')
-    sql ="SELECT * FROM personne where nom = '" + name + "'and cni = '" + cni + "' and datenaissance = '" + dateNaissance + "';"
-    cur.execute(sql)
-    result = cur.fetchall()
-    json = {'data': result}
-    if len(result) > 0:
-        return make_response(jsonify(json), 200)
-    else:
-        return False
-        # return render_template('erreur.html')
-    return render_template('index.html')
-
-
-
+#Search for a person in the database using parameters
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST' and request.form.get('name') != '' and request.form.get('cni') != '' and request.form.get('datenaissance') != '':
@@ -59,6 +40,8 @@ def index():
 
     return render_template('index.html')
 
+
+#Returns the list of people
 
 @app.route('/population', methods=['GET'])
 def population():
